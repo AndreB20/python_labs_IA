@@ -1,43 +1,28 @@
-from operator import le
-import pyautogui
-import keyboard
-class PianoTiles:
-    def __init__(self):
-        print("Apasa TASTA ESC pentru a inchide programul")
-        x1 = self._mouse_pos('STANGA')[0]
-        while keyboard.is_pressed('enter') : pass
-        x2 = self._mouse_pos('DREAPTA')[0]
-        self.left_x, self.right_x = min (x1,x2), max(x1,x2)
-        self.center_y = pyautogui.size()[1] // 2
-        self.tiles = self._tiles_pos()
-        print("Coordonatele jocului sunt", self.left_x, self.right_x, self.center_y)
- 
-    def _mouse_pos(self, border):
-        print(f'Pune cursorul in {border} marginii ferestrei jocului si apasa ENTER')
-        x,y = 0 , 0
-        while not keyboard.is_pressed('enter') and not keyboard.is_pressed('esc'):
-            x,y= pyautogui.position()
-            position = 'X: ' + str(x).rjust(4) + 'Y:' + str(y).rjust(4)
-            print(position, end='')
-            print('\b' * len(position), end='', flush=True)
-        print(f'{border} border: {x,y}')
-        return x,y
- 
-    def _tiles_pos(self):
-        lenght = self.right_x - self.left_x
-        step= lenght // 4
-        return [(self.left_x + i, self.center_y) for i in range (step//2, lenght, step)]
- 
-    def _is_tile(self,pixel,threshold):
-        color= pyautogui.pixel(*pixel)
-        return True if color[0]<=threshold else False
- 
-    def run(self, *, tile_rgb=10):
-        while not keyboard.is_pressed('esc'):
-            for pos in self.tiles:
-                if self._is_tile(pos, tile_rgb):
-                    pyautogui.click(*pos)
-                    break
- 
-if __name__ == '__main__':
-    PianoTiles().run()
+import numpy
+from scipy import stats
+
+speed = [99,86,87,88,111,86,103,87,94,78,77,85,86]
+
+print(speed)
+x = numpy.mean(speed)
+print(x)
+x = numpy.median(speed)
+print(x)
+x = stats.mode(speed, keepdims = True)
+print(x)
+
+speed =  [86,87,88,86,87,85,86]
+x = numpy.std(speed)
+print(x)
+
+speed = [32,111,138,28,59,77,97]
+x = numpy.std(speed)
+print(x)
+x = numpy.var(speed)
+print(x)
+
+ages = [5,31,43,48,50,41,7,11,15,39,80,82,32,2,8,6,25,36,27,61,31]
+x = numpy.percentile(ages, 75)
+print(x)
+x = numpy.random.uniform(0.0, 5.0, 250)
+print(x)
