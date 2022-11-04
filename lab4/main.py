@@ -25,17 +25,28 @@ def cautare_yt():
         pyautogui.write("zona it")
         pyautogui.press("enter")
         time.sleep(8)
-        cautare_abon()
+        cautare_zonait()
     else:
         print("iar ti ai luat teapa :(((")
 
-def cautare_abon():
-    if pyautogui.locateOnScreen('abon.png', confidence = 0.7):
+def cautare_zonait():
+    if pyautogui.locateOnScreen('zonait.png', confidence = 0.7):
         print("SUNTEM PE ZONA")
-        camp_abon = pyautogui.locateOnScreen('abon.png', confidence = 0.7)
-        pyautogui.click(camp_abon)
+        camp_zonait = pyautogui.locateOnScreen('zonait.png', confidence = 0.7)
+        pyautogui.click(camp_zonait)
+        time.sleep(3)
+        cautare_tab()
+    else:
+        print("BAAAAAA")
+
+def cautare_tab():
+    if pyautogui.locateOnScreen('videoclipuri.png', confidence = 0.7):
+        print("SUNTEM PE ZONA")
+        camp_zonait = pyautogui.locateOnScreen('videoclipuri.png', confidence = 0.7)
+        pyautogui.click(camp_zonait)
         time.sleep(3)
     else:
         print("BAAAAAA")
+
 time.sleep(2)
 cautare_goagle()
