@@ -1,12 +1,11 @@
 import time
-
 import pyautogui
 import keyboard
 
 def cautare_goagle():
-    if pyautogui.locateOnScreen('schema.png', confidence=0.7)!=None:
+    if pyautogui.locateOnScreen('schema.png', confidence=0.5)!=None:
         print("mere")
-        camp_google=pyautogui.locateOnScreen('schema.png',confidence=0.7)
+        camp_google=pyautogui.locateOnScreen('schema.png',confidence=0.5)
         pyautogui.click(camp_google)
         time.sleep(3)
         pyautogui.write("https://youtube.com")
