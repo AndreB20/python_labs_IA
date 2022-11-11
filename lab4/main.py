@@ -17,7 +17,7 @@ def cautare_goagle():
         print("teapa")
 
 def cautare_yt():
-    if pyautogui.locateCenterOnScreen('yt_search.png', confidence = 0.7):
+    if pyautogui.locateOnScreen('yt_search.png', confidence = 0.7):
         print("SUNTEM PE YT")
         camp_yt = pyautogui.locateOnScreen('yt_search.png', confidence = 0.7)
         pyautogui.click(camp_yt)
@@ -29,6 +29,13 @@ def cautare_yt():
     else:
         print("iar ti ai luat teapa :(((")
 
+def abon():
+    if pyautogui.locateOnScreen('zonait.png', confidence=0.7):
+        print("ne abonam")
+        camp_zonait = pyautogui.locateOnScreen('abon.png', confidence = 0.7)
+        pyautogui.click(camp_zonait)
+        time.sleep(3)
+        cautare_zonait()
 def cautare_zonait():
     if pyautogui.locateOnScreen('zonait.png', confidence = 0.7):
         print("SUNTEM PE ZONA")
@@ -45,8 +52,39 @@ def cautare_tab():
         camp_zonait = pyautogui.locateOnScreen('videoclipuri.png', confidence = 0.7)
         pyautogui.click(camp_zonait)
         time.sleep(3)
+        rulare_tab()
     else:
         print("BAAAAAA")
+
+def rulare_tab():
+    pyautogui.press("tab")
+    pyautogui.press("tab")
+    pyautogui.press("tab")
+    n=13
+    while True:
+        pyautogui.press("tab")
+        pyautogui.press("enter")
+        time.sleep(5)
+        if pyautogui.locateOnScreen('okeh.png', confidence = 0.7):
+            camp = pyautogui.locateOnScreen('okeh.png', confidence = 0.7)
+            pyautogui.click(camp)
+            time.sleep(1)
+            camp = pyautogui.locateOnScreen('bieck.png',confidence = 0.7)
+            pyautogui.click(camp)
+        while True:
+            for i in range(n):
+                pyautogui.press("tab")
+            pyautogui.press("enter")
+            time.sleep(3)
+            n = n + 2
+            if pyautogui.locateOnScreen('okeh.png', confidence=0.7):
+                camp = pyautogui.locateOnScreen('okeh.png', confidence=0.7)
+                pyautogui.click(camp)
+                time.sleep(1)
+                camp = pyautogui.locateOnScreen('bieck.png', confidence=0.7)
+                pyautogui.click(camp)
+                time.sleep(2)
+
 
 time.sleep(2)
 cautare_goagle()
