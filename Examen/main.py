@@ -11,6 +11,7 @@ cap = cv2.VideoCapture(0)
 mouse = mouse.Controller()
 keyboard = keyboard.Controller()
 
+threshold = 40
 
 hand_detector = mp.solutions.hands.Hands(min_detection_confidence= 0.5, min_tracking_confidence= 0.5)
 drawing_utils = mp.solutions.drawing_utils
@@ -49,7 +50,7 @@ while cap.isOpened():
                 if id == 8:#right click
                     index_x = screen_width/frame_width * x
                     index_y = screen_height/frame_height * y
-                    if abs(thumb_x - index_x) < 40 and abs(thumb_y - index_y) < 40:
+                    if abs(thumb_x - index_x) < threshold and abs(thumb_y - index_y) < threshold:
                         mouse.click(Button.right, 1)
                         pyautogui.sleep(0.2)
                     elif abs(thumb_y - index_y) < 400:
@@ -58,7 +59,7 @@ while cap.isOpened():
                 if id == 17:#left click
                     pod_x = screen_width/frame_width * x
                     pod_y = screen_height/frame_height * y
-                    if abs(thumb_x - pod_x) < 40 and abs(thumb_y - pod_y) < 40:
+                    if abs(thumb_x - pod_x) < threshold and abs(thumb_y - pod_y) < threshold:
                         mouse.click(Button.left, 1)
                         pyautogui.sleep(0.2)
                     elif abs(thumb_y - pod_y) < 400:
@@ -68,7 +69,7 @@ while cap.isOpened():
                     middle_x = screen_width/frame_width * x
                     middle_y = screen_height/frame_height * y
                     print(abs(thumb_x - middle_x))
-                    if abs(thumb_x - middle_x) < 40 and abs(thumb_y - middle_y) < 40:
+                    if abs(thumb_x - middle_x) < threshold and abs(thumb_y - middle_y) < threshold:
                         keyboard.press('w')
                         pyautogui.sleep(0.1)
                         keyboard.release('w')
@@ -79,7 +80,7 @@ while cap.isOpened():
                 if id == 16:        #R kon
                     ring_x = screen_width/frame_width * x
                     ring_y = screen_height/frame_height * y
-                    if abs(thumb_x - ring_x) < 40 and abs(thumb_y - ring_y) < 40:
+                    if abs(thumb_x - ring_x) < threshold and abs(thumb_y - ring_y) < threshold:
                         keyboard.press('r')
                         pyautogui.sleep(0.1)
                         keyboard.release('r')
@@ -90,7 +91,7 @@ while cap.isOpened():
                 if id == 20:        #E
                     small_x = screen_width/frame_width * x
                     small_y = screen_height/frame_height * y
-                    if abs(thumb_x - small_x) < 40 and abs(thumb_y - small_y) < 40:
+                    if abs(thumb_x - small_x) < threshold and abs(thumb_y - small_y) < threshold:
                         keyboard.press('e')
                         pyautogui.sleep(0.1)
                         keyboard.release('e')
@@ -104,6 +105,6 @@ while cap.isOpened():
 
 
     cv2.imshow('ferestruta', frame)
-    cv2.waitKey(1)
-    #if cv2.waitKey(10) & 0xFF == ord('q'):
-        #break
+
+    if cv2.waitKey(10) & 0xFF == ord('z'):
+        break
